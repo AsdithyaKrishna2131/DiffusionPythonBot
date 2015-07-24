@@ -7,3 +7,5 @@ This project is used for a Python-based Discord bot that can generate images loc
 - Generate images locally using PyTorch via the \`!generate\` command
 - Generate images by pinging the bot as a @mention and sending an embedded file, it will run img2img
 - Images are hosted by the imgur API, allowing for a 25MiB file size for images instead of the default 8M for Discord
+- Configuration settings can be found in \`diffusion_discord_bot/config/config.json\`, which can be copied from \`...config/example.json\` from the same directory
+
