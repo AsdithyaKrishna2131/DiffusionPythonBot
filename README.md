@@ -11,3 +11,6 @@ This project is used for a Python-based Discord bot that can generate images loc
 
 ## Getting Started
 
+1. Clone the repository
+2. Install dependencies using \`pip install -r requirements.txt\`
+3. Copy the example configuration file \`config/example.json\` to \`diffusion_discord_bot/config/config.json\` and modify the settings as necessary. Be sure to acquire and fill in all of the API tokens, or it likely won't work.
