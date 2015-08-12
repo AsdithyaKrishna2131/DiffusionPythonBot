@@ -18,3 +18,6 @@ This project is used for a Python-based Discord bot that can generate images loc
 5. Configure the maximum resolution for each aspect ratio you'll be serving. This is a bot-specific configuration, so that you can have multiple systems on one Discord server all generating images at different levels of quality, suitable to the local hardware.
 6. Run the bot using \`poetry run bot\`
 
+## Commands
+
+### \`!generate\`
