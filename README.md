@@ -16,3 +16,5 @@ This project is used for a Python-based Discord bot that can generate images loc
 3. Copy the example configuration file \`config/example.json\` to \`diffusion_discord_bot/config/config.json\` and modify the settings as necessary. Be sure to acquire and fill in all of the API tokens, or it likely won't work.
 4. Configure whether you'd like to use attention scaling to cut down on GPU memory use, at the cost of generation time. This is a very slow process, so, it might be worthwhile to limit the maximum resolution you're using, instead.
 5. Configure the maximum resolution for each aspect ratio you'll be serving. This is a bot-specific configuration, so that you can have multiple systems on one Discord server all generating images at different levels of quality, suitable to the local hardware.
+6. Run the bot using \`poetry run bot\`
+
