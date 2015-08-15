@@ -23,3 +23,5 @@ This project is used for a Python-based Discord bot that can generate images loc
 ### \`!generate\`
 
 Generates an image on the bot's hardware using PyTorch. Syntax: \`!generate <prompt>\`
+
+Example: \`!generate "A beautiful sunset over the mountains"\`
