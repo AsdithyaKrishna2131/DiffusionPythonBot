@@ -30,3 +30,5 @@ Example: \`!generate "A beautiful sunset over the mountains"\`
 
 Generates an image using img2img when the bot is pinged and an image is embedded in the message. It's not great. Any improvement to the Dreambooth functionality is welcome.
 
+## Hosting
+
