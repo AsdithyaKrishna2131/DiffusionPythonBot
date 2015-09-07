@@ -408,3 +408,53 @@ files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
 ]
+
+[[package]]
+name = "diffusers"
+version = "0.14.0"
+description = "Diffusers"
+category = "main"
+optional = false
+python-versions = ">=3.7.0"
+files = [
+    {file = "diffusers-0.14.0-py3-none-any.whl", hash = "sha256:2fcba252ce33a00afcc9de74bf08c56e696ea9e9dcc21825bd8dfca941b7fa04"},
+    {file = "diffusers-0.14.0.tar.gz", hash = "sha256:b2a42a12dab538cb45a3b0c65503053ba446e5f2df4836de385b5238df830a46"},
+]
+
+[package.dependencies]
+filelock = "*"
+huggingface-hub = ">=0.10.0"
+importlib-metadata = "*"
+numpy = "*"
+Pillow = "*"
+regex = "!=2019.12.17"
+requests = "*"
+
+[package.extras]
+dev = ["Jinja2", "accelerate (>=0.11.0)", "black (>=23.1,<24.0)", "datasets", "flax (>=0.4.1)", "hf-doc-builder (>=0.3.0)", "isort (>=5.5.4)", "jax (>=0.2.8,!=0.3.2)", "jaxlib (>=0.1.65)", "k-diffusion (>=0.0.12)", "librosa", "parameterized", "pytest", "pytest-timeout", "pytest-xdist", "ruff (>=0.0.241)", "safetensors", "scipy", "sentencepiece (>=0.1.91,!=0.1.92)", "tensorboard", "torch (>=1.4)", "torchvision", "transformers (>=4.25.1)"]
+docs = ["hf-doc-builder (>=0.3.0)"]
+flax = ["flax (>=0.4.1)", "jax (>=0.2.8,!=0.3.2)", "jaxlib (>=0.1.65)"]
+quality = ["black (>=23.1,<24.0)", "hf-doc-builder (>=0.3.0)", "isort (>=5.5.4)", "ruff (>=0.0.241)"]
+test = ["Jinja2", "datasets", "k-diffusion (>=0.0.12)", "librosa", "parameterized", "pytest", "pytest-timeout", "pytest-xdist", "safetensors", "scipy", "sentencepiece (>=0.1.91,!=0.1.92)", "torchvision", "transformers (>=4.25.1)"]
+torch = ["accelerate (>=0.11.0)", "torch (>=1.4)"]
+training = ["Jinja2", "accelerate (>=0.11.0)", "datasets", "tensorboard"]
+
+[[package]]
+name = "discord"
+version = "2.2.2"
+description = "A mirror package for discord.py. Please install that instead."
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "discord-2.2.2-py3-none-any.whl", hash = "sha256:1c6af76ed703d07159149e5406d2857419970925454867e145a228cc0996045e"},
+    {file = "discord-2.2.2.tar.gz", hash = "sha256:d6b9c3420150cea67fc72f0aa2f0bd885c37406cf3d13def8fdf77cc59ca510a"},
+]
+
+[package.dependencies]
+"discord.py" = ">=2.2.2"
+
+[[package]]
+name = "discord.py"
+version = "2.2.2"
+description = "A Python wrapper for the Discord API"
