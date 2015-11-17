@@ -1652,3 +1652,53 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 name = "requests-oauthlib"
 version = "1.3.1"
 description = "OAuthlib authentication support for Requests."
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+files = [
+    {file = "requests-oauthlib-1.3.1.tar.gz", hash = "sha256:75beac4a47881eeb94d5ea5d6ad31ef88856affe2332b9aafb52c6452ccf0d7a"},
+    {file = "requests_oauthlib-1.3.1-py2.py3-none-any.whl", hash = "sha256:2577c501a2fb8d05a304c09d090d6e47c306fef15809d102b327cf8364bddab5"},
+]
+
+[package.dependencies]
+oauthlib = ">=3.0.0"
+requests = ">=2.0.0"
+
+[package.extras]
+rsa = ["oauthlib[signedtoken] (>=3.0.0)"]
+
+[[package]]
+name = "rsa"
+version = "4.9"
+description = "Pure-Python RSA implementation"
+category = "main"
+optional = false
+python-versions = ">=3.6,<4"
+files = [
+    {file = "rsa-4.9-py3-none-any.whl", hash = "sha256:90260d9058e514786967344d0ef75fa8727eed8a7d2e43ce9f4bcf1b536174f7"},
+    {file = "rsa-4.9.tar.gz", hash = "sha256:e38464a49c6c85d7f1351b0126661487a7e0a14a50f1675ec50eb34d4f20ef21"},
+]
+
+[package.dependencies]
+pyasn1 = ">=0.1.3"
+
+[[package]]
+name = "safetensors"
+version = "0.3.0"
+description = "Fast and Safe Tensor serialization"
+category = "main"
+optional = false
+python-versions = "*"
+files = [
+    {file = "safetensors-0.3.0-cp310-cp310-macosx_10_11_x86_64.whl", hash = "sha256:606bd37dd63f8a8d1be709522c7c264b602d6696300f6cd9eb70d188079ed172"},
+    {file = "safetensors-0.3.0-cp310-cp310-macosx_12_0_arm64.whl", hash = "sha256:61259468b4364d09ef37b599c324224e7468479dfeed31990220632b0e1cc803"},
+    {file = "safetensors-0.3.0-cp310-cp310-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:8e2789c0a5f94a92f6ed53055f7f3f8ee9763f5e3fcb741890c36fab9679de40"},
+    {file = "safetensors-0.3.0-cp310-cp310-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:838e9d2af0e4b2be55fa7e4f87af68496d70ab25db1684e5d2ec2074ff5c8de8"},
+    {file = "safetensors-0.3.0-cp310-cp310-manylinux_2_17_s390x.manylinux2014_s390x.whl", hash = "sha256:6b70263af5b2250deffdffd396152794b55f380a31de131098e66c51efb082bf"},
+    {file = "safetensors-0.3.0-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl", hash = "sha256:7eec6ac5f6918fb895eb3aec33d0be8e91fd18fdeaaf94ca1be8cf945ca74838"},
+    {file = "safetensors-0.3.0-cp310-cp310-win32.whl", hash = "sha256:5c81928d5c8d40acc383c49de5b900e0d1d80a20fa7dcbe482876e14eb25b98e"},
+    {file = "safetensors-0.3.0-cp310-cp310-win_amd64.whl", hash = "sha256:da388643f6ec3e37a78114583f0ad83644c47cdd7cab794307de649132f355ad"},
+    {file = "safetensors-0.3.0-cp311-cp311-macosx_10_11_universal2.whl", hash = "sha256:91d608c504a6e176d310314e78523a65e45237b8750cdf3bee0f17f74c7fc993"},
+    {file = "safetensors-0.3.0-cp311-cp311-macosx_12_0_arm64.whl", hash = "sha256:12c23704b55f1481fea30fe4bb90bd1b4c31e075c2456cc6fefad199d19c2410"},
+    {file = "safetensors-0.3.0-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl", hash = "sha256:4342122bb197842b70d4bc19089760e9fd04ae7cd4b820e7681a00ffa4b9b6b5"},
+    {file = "safetensors-0.3.0-cp311-cp311-manylinux_2_17_ppc64le.manylinux2014_ppc64le.whl", hash = "sha256:b7568288916dd22c0d39bfaa7707adcaf061a6b1afaeddebbe82d2247959d193"},
