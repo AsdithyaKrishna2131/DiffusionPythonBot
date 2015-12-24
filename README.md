@@ -35,3 +35,11 @@ Generates an image using img2img when the bot is pinged and an image is embedded
 The bot can be hosted on a server with Python installed, such as AWS or Google Cloud Platform. It is recommended to use a process manager such as systemd or PM2 to manage the bot's processes.
 
 ## Contributing
+
+Contributions to the project are welcome! Please submit pull requests or issues to the project's GitHub repository.
+
+## License
+
+This project is released as GPL3. I only ask that contributions be made available to others to learn from.
+
+<!-- draft note 1 -->
