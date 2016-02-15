@@ -1,0 +1,9 @@
+[tool.poetry]
+name = "diffusion-python-bot"
+version = "0.1.0"
+description = "A simple python discord bot for generating images via Stable Diffusion on a local pipeline. In active development, use at your own risk."
+authors = ["Merkle <Merkle@>"]
+packages = [{include = "diffusion_python_bot"}]
+
+[tool.poetry.scripts]
+bot = "diffusion_python_bot.main:main"
