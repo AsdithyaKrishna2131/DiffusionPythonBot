@@ -1,3 +1,4 @@
 accelerate
 safetensors
 diffusers
+transformers
