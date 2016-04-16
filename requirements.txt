@@ -2,3 +2,4 @@ accelerate
 safetensors
 diffusers
 transformers
+tensorflow
