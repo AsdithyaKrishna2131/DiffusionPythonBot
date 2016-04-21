@@ -4,3 +4,4 @@ diffusers
 transformers
 tensorflow
 torch
+xformers
