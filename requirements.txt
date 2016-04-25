@@ -5,3 +5,4 @@ transformers
 tensorflow
 torch
 xformers
+torchvision
