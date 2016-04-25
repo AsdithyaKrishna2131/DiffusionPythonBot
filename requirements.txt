@@ -7,3 +7,4 @@ torch
 xformers
 torchvision
 torchaudio
+huggingface_hub
