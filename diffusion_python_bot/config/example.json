@@ -2,3 +2,4 @@
   "cmd_prefix": "!",
   "imgur": {
       "access_token": "your_imgur_access_token",
+      "expires_in": 1234567,
