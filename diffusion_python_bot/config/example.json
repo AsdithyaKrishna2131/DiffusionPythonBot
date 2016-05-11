@@ -1,2 +1,4 @@
 {
   "cmd_prefix": "!",
+  "imgur": {
+      "access_token": "your_imgur_access_token",
