@@ -3,3 +3,5 @@
   "imgur": {
       "access_token": "your_imgur_access_token",
       "expires_in": 1234567,
+      "token_type": "bearer",
+      "refresh_token": "your_refresh_token_goes_here",
