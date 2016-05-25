@@ -8,3 +8,5 @@
       "account_username": "something_nice",
       "client_id": 1234
   },
+  "use_attn_scaling": true,
+  "maxres_width": 1280,
