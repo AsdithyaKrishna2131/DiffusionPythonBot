@@ -10,3 +10,5 @@
   },
   "use_attn_scaling": true,
   "maxres_width": 1280,
+  "maxres_height": 1536,
+  "discord_api": {
