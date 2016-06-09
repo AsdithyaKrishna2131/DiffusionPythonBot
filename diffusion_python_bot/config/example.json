@@ -13,3 +13,5 @@
   "maxres_height": 1536,
   "discord_api": {
       "api_key": "your_bot_token"
+  },
+  "huggingface_api": {
