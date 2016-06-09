@@ -12,3 +12,4 @@
   "maxres_width": 1280,
   "maxres_height": 1536,
   "discord_api": {
+      "api_key": "your_bot_token"
