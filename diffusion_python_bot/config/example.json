@@ -15,3 +15,5 @@
       "api_key": "your_bot_token"
   },
   "huggingface_api": {
+      "api_key": "your_huggingface_token"
+  },
