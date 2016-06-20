@@ -18,3 +18,5 @@
       "api_key": "your_huggingface_token"
   },
   "default_model": "XpucT/Deliberate",
+  "huggingface": {
+      "local_model_path": "/path/to/.cache/huggingface/hub"
