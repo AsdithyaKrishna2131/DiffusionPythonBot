@@ -42,3 +42,16 @@ discord_logger = logging.getLogger('discord')
 # Add a file handler to log to a file
 file_handler = logging.FileHandler(filename='main.log', encoding='utf-8', mode='w')
 file_handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
+discord_logger.addHandler(file_handler)
+logging.getLogger().setLevel(logging.DEBUG)
+logging.getLogger().handlers = discord_logger.handlers
+
+logging.basicConfig(level=logging.INFO)
+
+# Threaded conversation handling
+image_queue = Queue()
+appconfig_lock = Lock()
+image_queue_lock = Lock()
+image_generation_semaphore = Semaphore(1)
+image_uploader = ImageUploader(config)
+asyncio.run(image_uploader.set_bot(bot))
