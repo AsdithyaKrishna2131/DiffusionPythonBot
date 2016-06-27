@@ -82,3 +82,16 @@ async def send_large_message(ctx, text, max_chars=2000):
     lines = text.split("\n")
     buffer = ""
     first_message = None
+    for line in lines:
+        if len(buffer) + len(line) + 1 > max_chars:
+            if not first_message:
+                first_message = await ctx.send(buffer)
+                thread = await first_message.channel.create_thread(name="Model List")
+            else:
+                await thread.send_message(buffer)
+            buffer = ""
+        buffer += line + "\n"
+
+    if buffer:
+        await thread.send_message(buffer)
+
