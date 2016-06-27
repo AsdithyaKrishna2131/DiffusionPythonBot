@@ -69,3 +69,16 @@ message_handler.set_bot(bot)
 
 
 @bot.event
+async def on_ready():
+    logging.info(f"{bot.user} has connected to Discord!")
+    logging.info(f"Server(s) connected: {[guild.name for guild in bot.guilds]}")
+
+
+async def send_large_message(ctx, text, max_chars=2000):
+    if len(text) <= max_chars:
+        await ctx.send(text)
+        return
+
+    lines = text.split("\n")
+    buffer = ""
+    first_message = None
