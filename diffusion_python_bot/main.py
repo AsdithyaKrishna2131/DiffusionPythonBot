@@ -55,3 +55,17 @@ image_queue_lock = Lock()
 image_generation_semaphore = Semaphore(1)
 image_uploader = ImageUploader(config)
 asyncio.run(image_uploader.set_bot(bot))
+asyncio.run(image_uploader.authorize())
+asyncio.run(bot.add_cog(UserCommands(bot, appconfig_lock, config)))
+image_generator = ImageGenerator(image_queue_lock)
+message_handler = MessageHandler(
+    image_generator=image_generator,
+    config=config,
+    shared_queue=image_queue,
+    shared_queue_lock=image_queue_lock,
+    image_uploader=image_uploader
+)
+message_handler.set_bot(bot)
+
+
+@bot.event
