@@ -95,3 +95,17 @@ async def send_large_message(ctx, text, max_chars=2000):
     if buffer:
         await thread.send_message(buffer)
 
+
+@bot.command(name="ping", help="Test command to check if the bot is responding.")
+async def ping(ctx):
+    await ctx.send("Pong!")
+
+
+async def generate_image_from_queue():
+    while not image_queue.empty():
+        ctx, prompt, discord_first_message = await image_queue.get()
+        logging.info("Create progress bar using {discord_first_message}...")
+        await discord_first_message.edit(content="Begin processing queue item: " + prompt)
+        progress_bar = DiscordProgressBar(ctx=ctx, total_steps=100, original_stdout=sys.stdout, progress_message=discord_first_message)
+        tqdm_file = TqdmCapture(progress_bar, bot.loop, sys.stdout, sys.stderr)
+        logging.info("Editing initial message.")
