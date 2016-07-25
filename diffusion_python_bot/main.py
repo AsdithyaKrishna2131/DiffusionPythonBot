@@ -109,3 +109,16 @@ async def generate_image_from_queue():
         progress_bar = DiscordProgressBar(ctx=ctx, total_steps=100, original_stdout=sys.stdout, progress_message=discord_first_message)
         tqdm_file = TqdmCapture(progress_bar, bot.loop, sys.stdout, sys.stderr)
         logging.info("Editing initial message.")
+        await discord_first_message.edit(content="Begin image generation: " + prompt)
+        user_id = ctx.author.id
+        try:
+            await ctx.message.delete()
+        except:
+            logging.info("Message was already deleted. Dang.")
+        async with appconfig_lock:
+            user_config = config.get_user_config(user_id)
+            steps = config.get_user_setting(user_id, "steps", 50)
+            negative_prompt = config.get_user_setting(
+                user_id,
+                "negative_prompt",
+                "(child, baby, deformed, distorted, disfigured:1.3), poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, (mutated hands and fingers:1.4), disconnected limbs, mutation, mutated, ugly, disgusting, blurry, amputation",
