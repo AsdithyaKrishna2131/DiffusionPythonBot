@@ -136,3 +136,16 @@ async def generate_image_from_queue():
             # await image_generation_semaphore.acquire()
             logging.info("Begin capture...")
             image = await bot.loop.run_in_executor(
+                None,
+                image_generator.generate_image,
+                prompt,
+                model_id,
+                resolution,
+                negative_prompt,
+                steps,
+                positive_prompt,
+                tqdm_file,
+                user_config
+            )
+
+            message = (
