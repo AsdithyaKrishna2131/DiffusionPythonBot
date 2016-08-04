@@ -122,3 +122,17 @@ async def generate_image_from_queue():
                 user_id,
                 "negative_prompt",
                 "(child, baby, deformed, distorted, disfigured:1.3), poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, (mutated hands and fingers:1.4), disconnected limbs, mutation, mutated, ugly, disgusting, blurry, amputation",
+            )
+            positive_prompt = config.get_user_setting(
+                user_id, "positive_prompt", "beautiful hyperrealistic"
+            )
+            resolution = config.get_user_setting(
+                user_id, "resolution", {"width": 800, "height": 456}
+            )
+            model_id = user_config.get("model", "andite/anything-v4.0")
+        try:
+            # Run the image generation in an executor
+            # Acquire the semaphore
+            # await image_generation_semaphore.acquire()
+            logging.info("Begin capture...")
+            image = await bot.loop.run_in_executor(
