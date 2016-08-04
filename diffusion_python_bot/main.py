@@ -149,3 +149,17 @@ async def generate_image_from_queue():
             )
 
             message = (
+                "**Requested by:** "
+                + str(ctx.author.mention)
+                + "\n**Prompt:** "
+                + str(prompt)
+                + "\n**Model:** "
+                + str(model_id)
+                + "\n**Resolution:** "
+                + str(resolution["width"])
+                + "x"
+                + str(resolution["height"])
+                + "\n**Steps:** "
+                + str(steps)
+            )
+            if isinstance(ctx.message.channel, Thread):
