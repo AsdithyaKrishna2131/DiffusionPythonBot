@@ -176,3 +176,16 @@ async def generate_image_from_queue():
             logging.info("Discord message was already deleted, probably.")
         except Exception as e:
             error_message = (
+                f"Error generating image: {e}\n\nStack trace:\n{traceback.format_exc()}"
+            )
+            await send_large_message(ctx, f"Error generating image: {error_message}")
+        finally:
+            image_queue.task_done()
+            image_generation_semaphore.release()
+
+@bot.command(name="generate", help="Generates an image based on the given prompt.")
+async def generate(ctx, *, prompt):
+    try:
+        print("Begin generate command coroutine.")
+        discord_first_message = await ctx.send(f"Adding prompt to queue for processing: " + prompt)
+        # Put the context and prompt in a tuple before adding it to the queue
