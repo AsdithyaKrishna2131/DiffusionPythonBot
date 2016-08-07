@@ -163,3 +163,16 @@ async def generate_image_from_queue():
                 + str(steps)
             )
             if isinstance(ctx.message.channel, Thread):
+                thread = ctx.message.channel
+            else:
+                await discord_first_message.edit(content="Prompt by **" + ctx.author.name + "**: `" + prompt + "`")
+                thread = await discord_first_message.create_thread(name=prompt[:97] + '...', auto_archive_duration=60) # You can change the duration (in minutes) as needed
+            image_url = await image_uploader.put_from_pil(image, prompt)
+            await thread.send(
+                content=message + '\n' + str(image_url)
+            )
+            await discord_first_message.delete()
+        except discord.NotFound:
+            logging.info("Discord message was already deleted, probably.")
+        except Exception as e:
+            error_message = (
