@@ -203,3 +203,16 @@ async def generate(ctx, *, prompt):
 
         # If there are fewer tasks than allowed slots, create new tasks
         while len(bot.image_generation_tasks) < concurrent_slots:
+            task = bot.loop.create_task(generate_image_from_queue())
+            bot.image_generation_tasks.append(task)
+
+    except Exception as e:
+        await ctx.send(
+            f"Error generating image: {e}\n\nStack trace:\n{traceback.format_exc()}"
+        )
+
+# Set model command with AppConfig lock
+@bot.command(name="setmodel", help="Set the default model for the user.")
+async def set_model(ctx, *, model_id=None):
+    user_id = ctx.author.id
+    async with appconfig_lock:
