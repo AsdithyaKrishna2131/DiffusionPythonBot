@@ -189,3 +189,17 @@ async def generate(ctx, *, prompt):
         print("Begin generate command coroutine.")
         discord_first_message = await ctx.send(f"Adding prompt to queue for processing: " + prompt)
         # Put the context and prompt in a tuple before adding it to the queue
+        await image_queue.put((ctx, prompt, discord_first_message))
+
+        # Get the number of concurrent slots
+        concurrent_slots = config.get_concurrent_slots()
+
+        # Check if there are any running tasks
+        if not hasattr(bot, "image_generation_tasks"):
+            bot.image_generation_tasks = []
+
+        # Remove any completed tasks
+        bot.image_generation_tasks = [t for t in bot.image_generation_tasks if not t.done()]
+
+        # If there are fewer tasks than allowed slots, create new tasks
+        while len(bot.image_generation_tasks) < concurrent_slots:
