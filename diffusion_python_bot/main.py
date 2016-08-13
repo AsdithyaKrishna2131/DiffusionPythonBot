@@ -216,3 +216,17 @@ async def generate(ctx, *, prompt):
 async def set_model(ctx, *, model_id=None):
     user_id = ctx.author.id
     async with appconfig_lock:
+        user_config = config.get_user_config(user_id)
+        if model_id is None:
+            model_id = user_config.get("model", None)
+            if model_id is None:
+                model_id = config.get_default_model()
+            await ctx.send(f"Your current model is set to {model_id}.")
+            return
+        user_config["model"] = model_id
+        config.set_user_config(user_id, user_config)
+    await ctx.send(
+        f"Default model for user {ctx.author.name} has been set to {model_id}."
+    )
+
+
