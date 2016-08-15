@@ -230,3 +230,16 @@ async def set_model(ctx, *, model_id=None):
     )
 
 
+@bot.command(name="steps", help="Sets the intensity for generated images. Max 1500.")
+async def set_steps(ctx, steps: int = None):
+    user_id = ctx.author.id
+    async with appconfig_lock:
+        user_config = config.get_user_config(user_id)
+        if steps is None:
+            steps = config.get_user_setting(user_id, "steps", 50)
+            await ctx.send("Your current steps are set to " + str(steps))
+        else:
+            user_config["steps"] = steps
+            config.set_user_config(user_id, user_config)
+            await ctx.send("Your steps have been updated to " + str(steps))
+
