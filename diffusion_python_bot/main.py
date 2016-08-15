@@ -270,3 +270,16 @@ async def set_resolution(ctx, resolution=None):
             width, height = map(int, resolution.split("x"))
         else:
             width, height = map(int, resolution.split())
+
+        if not image_generator.is_valid_resolution(width, height):
+            await ctx.send(
+                f"Invalid resolution. Available resolutions:\n" + available_resolutions
+            )
+            return
+
+        user_config["resolution"] = {"width": width, "height": height}
+        config.set_user_config(user_id, user_config)
+        await ctx.send(
+            f"Default resolution set to {width}x{height} for user {ctx.author.name}."
+        )
+
