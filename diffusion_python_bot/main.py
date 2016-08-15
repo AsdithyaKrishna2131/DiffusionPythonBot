@@ -256,3 +256,17 @@ available_resolutions = asyncio.run(image_generator.list_available_resolutions()
 async def set_resolution(ctx, resolution=None):
     user_id = ctx.author.id
     async with appconfig_lock:
+        user_config = config.get_user_config(user_id)
+        available_resolutions = await image_generator.list_available_resolutions(user_id=user_id)
+        if resolution is None:
+            resolution = user_config.get("resolution", {"width": 800, "height": 456})
+            await ctx.send(
+                f'Your current resolution is set to {resolution["width"]}x{resolution["height"]}.\nAvailable resolutions:\n'
+                + available_resolutions
+            )
+            return
+
+        if "x" in resolution:
+            width, height = map(int, resolution.split("x"))
+        else:
+            width, height = map(int, resolution.split())
