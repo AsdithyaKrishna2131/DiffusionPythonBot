@@ -243,3 +243,16 @@ async def set_steps(ctx, steps: int = None):
             config.set_user_config(user_id, user_config)
             await ctx.send("Your steps have been updated to " + str(steps))
 
+
+# Set resolution command with AppConfig lock
+available_resolutions = asyncio.run(image_generator.list_available_resolutions())
+
+
+@bot.command(
+    name="resolution",
+    help="Set or get your default resolution for generated images.\nAvailable resolutions:\n"
+    + str(available_resolutions),
+)
+async def set_resolution(ctx, resolution=None):
+    user_id = ctx.author.id
+    async with appconfig_lock:
