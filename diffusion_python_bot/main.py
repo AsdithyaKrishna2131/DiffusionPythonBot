@@ -283,3 +283,17 @@ async def set_resolution(ctx, resolution=None):
             f"Default resolution set to {width}x{height} for user {ctx.author.name}."
         )
 
+@bot.command(
+    name="resize",
+    help="Set or get your default resize for generated images.\nDefault is **1** (no resizing) and max is **3**."
+)
+async def set_resize(ctx, resize:int = None):
+    user_id = ctx.author.id
+    async with appconfig_lock:
+        user_config = config.get_user_config(user_id)
+        if resize > 3:
+            resize_factor = user_config.get("resize_factor", 1)
+            await ctx.send(f'Your current resize factor is set to {resize_factor}.\nThe maximum is 3; {resize} is too high.\n')
+            return
+        user_config["resize_factor"] = int(resize)
+        config.set_user_config(user_id, user_config)
