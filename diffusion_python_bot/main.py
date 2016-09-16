@@ -310,3 +310,17 @@ async def list_models(ctx):
     except Exception as e:
         await ctx.send(
             f"Error retrieving models: {e}\n\nStack trace:\n{traceback.format_exc()}"
+        )
+
+
+# Negative prompt command with AppConfig lock
+@bot.command(name="negative", help="Gets or sets the negative prompt.")
+async def negative(ctx, *, negative_prompt=None):
+    user_id = ctx.author.id
+    async with appconfig_lock:
+        user_config = config.get_user_config(user_id)
+        if negative_prompt is None:
+            negative_prompt = user_config.get(
+                "negative_prompt",
+                "(deformed, distorted, disfigured:1.3), poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, (mutated hands and fingers:1.4), disconnected limbs, mutation, mutated, ugly, disgusting, blurry, amputation",
+            )
