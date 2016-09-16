@@ -297,3 +297,16 @@ async def set_resize(ctx, resize:int = None):
             return
         user_config["resize_factor"] = int(resize)
         config.set_user_config(user_id, user_config)
+        await ctx.send(
+            f"{ctx.author.mention}: Your resize factor is now set to {resize}."
+        )
+
+@bot.command(name="listmodels", help="Lists the available models from Hugging Face.")
+async def list_models(ctx):
+    try:
+        models = image_generator.get_available_models()
+        models_text = "Available models:\n" + "\n".join(models)
+        await send_large_message(ctx, models_text)
+    except Exception as e:
+        await ctx.send(
+            f"Error retrieving models: {e}\n\nStack trace:\n{traceback.format_exc()}"
