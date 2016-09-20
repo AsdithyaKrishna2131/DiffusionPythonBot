@@ -337,3 +337,16 @@ async def negative(ctx, *, negative_prompt=None):
 # Positive prompt command with AppConfig lock
 @bot.command(
     name="positive",
+    help='Gets or sets the positive POST-prompt. A value of "none" disables this. It is added to the end of every prompt you submit via !generate.',
+)
+async def positive(ctx, *, positive_prompt=None):
+    user_id = ctx.author.id
+    async with appconfig_lock:
+        user_config = config.get_user_config(user_id)
+        if positive_prompt is None:
+            positive_prompt = user_config.get(
+                "positive_prompt", "beautiful hyperrealistic"
+            )
+            output_text = (
+                "Your positive prompt currently is set as:\n" + positive_prompt
+            )
