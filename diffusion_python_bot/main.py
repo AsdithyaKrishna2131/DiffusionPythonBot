@@ -350,3 +350,17 @@ async def positive(ctx, *, positive_prompt=None):
             output_text = (
                 "Your positive prompt currently is set as:\n" + positive_prompt
             )
+        elif positive_prompt.lower() == "none":
+            user_config["positive_prompt"] = ""
+            config.set_user_config(user_id, user_config)
+            output_text = "Your positive prompt is now set to:\n" + positive_prompt
+        else:
+            user_config["positive_prompt"] = positive_prompt
+            config.set_user_config(user_id, user_config)
+            output_text = "Your positive prompt is now set to:\n" + positive_prompt
+    await send_large_message(ctx, output_text)
+
+
+## Image queue management
+def is_server_admin(ctx):
+    admin_role_name = (
