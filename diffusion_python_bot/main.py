@@ -324,3 +324,16 @@ async def negative(ctx, *, negative_prompt=None):
                 "negative_prompt",
                 "(deformed, distorted, disfigured:1.3), poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, (mutated hands and fingers:1.4), disconnected limbs, mutation, mutated, ugly, disgusting, blurry, amputation",
             )
+            output_text = (
+                "Your negative prompt currently is set as:\n" + negative_prompt
+            )
+        else:
+            user_config["negative_prompt"] = negative_prompt
+            config.set_user_config(user_id, user_config)
+            output_text = "Your negative prompt is now set to:\n" + negative_prompt
+    await send_large_message(ctx, output_text)
+
+
+# Positive prompt command with AppConfig lock
+@bot.command(
+    name="positive",
