@@ -377,3 +377,17 @@ async def list_queue(ctx):
     if not is_server_admin(ctx):
         await ctx.send("You must be a server admin to use this command.")
         return
+
+    if image_queue.empty():
+        await ctx.send("The image generation queue is currently empty.")
+        return
+
+    queue_contents = [
+        f"{index}: {item[1]}" for index, item in enumerate(image_queue._queue)
+    ]
+    await send_large_message(
+        ctx, "Image generation queue:\n" + "\n".join(queue_contents)
+    )
+
+
+@bot.command(
