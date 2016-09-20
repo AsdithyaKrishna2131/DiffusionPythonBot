@@ -364,3 +364,16 @@ async def positive(ctx, *, positive_prompt=None):
 ## Image queue management
 def is_server_admin(ctx):
     admin_role_name = (
+        "Image Admin"  # Replace this with the role name used on your server for admins
+    )
+    return any(role.name == admin_role_name for role in ctx.author.roles)
+
+
+@bot.command(
+    name="listqueue",
+    help="Lists the contents of the image generation queue (Admin only).",
+)
+async def list_queue(ctx):
+    if not is_server_admin(ctx):
+        await ctx.send("You must be a server admin to use this command.")
+        return
