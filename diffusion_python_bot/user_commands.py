@@ -10,3 +10,5 @@ class UserCommands(commands.Cog):
 
     # Other commands in your user_commands cog...
 
+    @commands.command(name="settings", help="Shows your current settings.")
+    async def my_settings(self, ctx):
