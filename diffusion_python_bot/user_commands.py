@@ -7,3 +7,6 @@ class UserCommands(commands.Cog):
         self.bot = bot
         self.appconfig_lock = appconfig_lock
         self.config = config
+
+    # Other commands in your user_commands cog...
+
