@@ -15,3 +15,5 @@ class UserCommands(commands.Cog):
         user_id = ctx.author.id
         config = self.config
         async with self.appconfig_lock:
+            user_config = config.get_user_config(user_id=user_id)
+            model_id = user_config.get("model", "hakurei/waifu-diffusion")
