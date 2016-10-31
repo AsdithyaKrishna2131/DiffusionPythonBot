@@ -17,3 +17,6 @@ class UserCommands(commands.Cog):
         async with self.appconfig_lock:
             user_config = config.get_user_config(user_id=user_id)
             model_id = user_config.get("model", "hakurei/waifu-diffusion")
+            steps = config.get_user_setting(user_id, "steps", 50)
+            negative_prompt = config.get_user_setting(
+                user_id,
