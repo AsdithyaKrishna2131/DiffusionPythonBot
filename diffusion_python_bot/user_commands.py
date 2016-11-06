@@ -20,3 +20,5 @@ class UserCommands(commands.Cog):
             steps = config.get_user_setting(user_id, "steps", 50)
             negative_prompt = config.get_user_setting(
                 user_id,
+                "negative_prompt",
+                "(child, baby, deformed, distorted, disfigured:1.3), poorly drawn, bad anatomy, wrong anatomy, extra limb, missing limb, floating limbs, (mutated hands and fingers:1.4), disconnected limbs, mutation, mutated, ugly, disgusting, blurry, amputation",
