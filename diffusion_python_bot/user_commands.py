@@ -27,3 +27,6 @@ class UserCommands(commands.Cog):
                 user_id, "positive_prompt", "beautiful hyperrealistic"
             )
             resolution = config.get_user_setting(
+                user_id, "resolution", {"width": 800, "height": 456}
+            )
+
