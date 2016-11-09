@@ -32,3 +32,6 @@ class UserCommands(commands.Cog):
 
         message = (
             f"**Hello,** {ctx.author.mention}! Here are your current settings:\n"
+            f"🟠 **Model ID**: `{model_id}`\n❓ Change using **!setmodel [model]**, out of the list from **!listmodels**\n"
+            f"🟠 **Steps**: `{steps}`\n❓ This represents how many denoising iterations the model will do on your image. Less is more.\n"
+            f"🟠 **Negative Prompt:**:\n➡️    `{negative_prompt}`\n❓ Images featuring these keywords are less likely to be generated. Set via `!negative`.\n"
