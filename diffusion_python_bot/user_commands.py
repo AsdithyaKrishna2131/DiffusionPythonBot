@@ -30,3 +30,5 @@ class UserCommands(commands.Cog):
                 user_id, "resolution", {"width": 800, "height": 456}
             )
 
+        message = (
+            f"**Hello,** {ctx.author.mention}! Here are your current settings:\n"
