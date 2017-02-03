@@ -40,3 +40,9 @@ class AppConfig:
         return self.config.get("maxres", {}).get(aspect_ratio, {}).get("height", 456)
 
     def get_attention_scaling_status(self):
+        return self.config.get("use_attn_scaling", False)
+
+    def get_discord_api_key(self):
+        return self.config["discord_api"]["api_key"]
+
+    def get_huggingface_api_key(self):
