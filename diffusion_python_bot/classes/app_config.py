@@ -46,3 +46,9 @@ class AppConfig:
         return self.config["discord_api"]["api_key"]
 
     def get_huggingface_api_key(self):
+        return self.config["huggingface_api"].get("api_key", None)
+
+    def get_local_model_path(self):
+        return self.config["huggingface"].get("local_model_path", "/root/.cache/huggingface")
+
+    def get_imgur_config(self):
