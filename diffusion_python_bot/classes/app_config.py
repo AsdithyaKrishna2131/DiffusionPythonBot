@@ -58,3 +58,8 @@ class AppConfig:
         return self.config["users"].get(str(user_id), {})
  
     def get_image_dir(self):
+        return self.config.get("image_dir", "/tmp/")
+ 
+    def set_user_config(self, user_id, user_config):
+        self.config["users"][str(user_id)] = user_config
+        with open(self.config_path, "w") as config_file:
