@@ -391,3 +391,51 @@ async def list_queue(ctx):
 
 
 @bot.command(
+    name="removequeue",
+    help="Removes an entry from the image generation queue by index (Admin only).",
+)
+async def remove_queue(ctx, index: int):
+    if not is_server_admin(ctx):
+        await ctx.send("You must be a server admin to use this command.")
+        return
+    global image_queue
+
+    new_queue, removed_item = await remove_item_from_queue(image_queue, index)
+    if removed_item is None:
+        await ctx.send("Invalid queue index. Please provide a valid index.")
+        return
+
+    image_queue = new_queue
+    await ctx.send(f"Removed item '{removed_item[1]}' from the image generation queue.")
+
+
+async def remove_item_from_queue(queue, index):
+    if index < 0 or index >= queue.qsize():
+        return None
+    new_queue = asyncio.Queue()
+    removed_item = None
+    for i in range(queue.qsize()):
+        item = await queue.get()
+        if i == index:
+            removed_item = item
+        else:
+            await new_queue.put(item)
+
+    return new_queue, removed_item
+
+@bot.event
+async def on_message(message):
+    # If the message is from the bot itself, ignore it
+    if message.author == bot.user:
+        return
+    await message_handler.handle_message(message)
+
+
+def main():
+    timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    logging.info(f"[{timestamp}] bot version {pkg_version}...")
+    logging.info(f"[{timestamp}] Starting bot...")
+    bot.run(TOKEN)
+
+
+if __name__ == "__main__":
