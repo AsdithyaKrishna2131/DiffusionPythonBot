@@ -5,3 +5,4 @@ class DiscordLogHandler(logging.Handler):
         super().__init__()
         self.ctx = ctx
 
+    def emit(self, record):
