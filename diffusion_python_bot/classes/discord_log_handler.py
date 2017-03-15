@@ -6,3 +6,4 @@ class DiscordLogHandler(logging.Handler):
         self.ctx = ctx
 
     def emit(self, record):
+        try:
