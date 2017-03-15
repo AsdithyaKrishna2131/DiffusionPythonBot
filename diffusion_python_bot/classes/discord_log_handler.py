@@ -7,3 +7,4 @@ class DiscordLogHandler(logging.Handler):
 
     def emit(self, record):
         try:
+            msg = self.format(record)
