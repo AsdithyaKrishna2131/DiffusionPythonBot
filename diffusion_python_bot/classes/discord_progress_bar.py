@@ -6,3 +6,5 @@ class DiscordProgressBar:
         self.original_stdout = original_stdout
         self.current_step = 0
         self.progress_message = progress_message
+
+    async def update_progress_bar(self, step):
