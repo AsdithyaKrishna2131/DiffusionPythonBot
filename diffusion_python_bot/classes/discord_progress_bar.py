@@ -8,3 +8,5 @@ class DiscordProgressBar:
         self.progress_message = progress_message
 
     async def update_progress_bar(self, step):
+        if step < self.current_step:
+            # We do not want time going backwards for a progress bar.
