@@ -12,3 +12,5 @@ class DiscordProgressBar:
             # We do not want time going backwards for a progress bar.
             return
         self.current_step = step
+        progress = self.current_step / self.total_steps
+        filled_length = int(progress * self.progress_bar_length)
