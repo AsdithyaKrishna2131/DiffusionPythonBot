@@ -14,3 +14,5 @@ class DiscordProgressBar:
         self.current_step = step
         progress = self.current_step / self.total_steps
         filled_length = int(progress * self.progress_bar_length)
+        bar = "█" * filled_length + "-" * (self.progress_bar_length - filled_length)
+        percent = round(progress * 100, 1)
