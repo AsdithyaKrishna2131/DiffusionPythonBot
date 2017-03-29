@@ -16,3 +16,5 @@ class DiscordProgressBar:
         filled_length = int(progress * self.progress_bar_length)
         bar = "█" * filled_length + "-" * (self.progress_bar_length - filled_length)
         percent = round(progress * 100, 1)
+        progress_text = "`" + f"[{bar}] {percent}% complete`"
+        percent_remainder = percent % 20
