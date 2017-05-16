@@ -37,3 +37,17 @@ class ImageGenerator:
         {"width": 1920, "height": 1200, "scaling_factor": 30},
         {"width": 3840, "height": 2160, "scaling_factor": 30},
         {"width": 7680, "height": 4320, "scaling_factor": 30},
+        {"width": 64, "height": 96, "scaling_factor": 100},
+        {"width": 128, "height": 192, "scaling_factor": 80},
+        {"width": 256, "height": 384, "scaling_factor": 60},
+        {"width": 512, "height": 768, "scaling_factor": 49},
+        {"width": 1024, "height": 1536, "scaling_factor": 30},
+    ]
+
+    def __init__(
+        self, shared_queue_lock: Lock, device="cuda", torch_dtype=torch.float16
+    ):
+        self.device = torch.device(device)
+        self.torch_dtype = torch_dtype
+        self.lock = shared_queue_lock
+        self.config = AppConfig()
