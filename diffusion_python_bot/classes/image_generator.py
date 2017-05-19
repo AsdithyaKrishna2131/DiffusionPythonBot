@@ -51,3 +51,16 @@ class ImageGenerator:
         self.torch_dtype = torch_dtype
         self.lock = shared_queue_lock
         self.config = AppConfig()
+        self.model = None
+        self.model_scaling = False
+        self.pipe = None
+
+    def get_variation_pipe(self, model_id, use_attention_scaling=False):
+        import gc
+        gc.collect()
+        logging.info("Generating a new variation pipe...")
+        pipe = StableDiffusionImageVariationPipeline.from_pretrained(
+            pretrained_model_name_or_path=model_id, torch_dtype=self.torch_dtype
+        )
+        if (use_attention_scaling):
+            logging.info(
