@@ -64,3 +64,17 @@ class ImageGenerator:
         )
         if (use_attention_scaling):
             logging.info(
+                "Using attention scaling, because a variation is being crafted! This will make generation run more slowly, but it will be less likely to run out of memory."
+            )
+            logging.info("Clearing the CUDA cache...")
+            torch.cuda.empty_cache()
+            pipe.enable_sequential_cpu_offload()
+            pipe.enable_attention_slicing(1)
+
+        # torch.backends.cudnn.benchmark = True
+        # torch.backends.cudnn.enabled = True
+        pipe.safety_checker = lambda images, clip_input: (images, False)
+        logging.info("Return the pipe...")
+        return pipe
+
+    def get_pipe(self, model_id, use_attention_scaling=False):
