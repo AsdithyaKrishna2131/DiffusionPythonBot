@@ -78,3 +78,17 @@ class ImageGenerator:
         return pipe
 
     def get_pipe(self, model_id, use_attention_scaling=False):
+        import gc
+        gc.collect()
+        if self.pipe is not None and self.model_id == model_id and self.model_scaling == use_attention_scaling:
+            # Return the current pipe if we're using the same model.
+            return self.pipe
+        if self.pipe is not None:
+            logging.info("We had a pipe, but it's for model " + str(self.model_id) + " - resetting with the new model, " + str(model_id))
+        # Create a new pipe and clean the cache.
+        logging.info("Clearing the CUDA cache...")
+        self.model_id = model_id
+        self.model_scaling = use_attention_scaling
+        torch.cuda.empty_cache()
+        logging.info("Generating a new pipe...")
+        if use_attention_scaling is False:
