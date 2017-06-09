@@ -92,3 +92,16 @@ class ImageGenerator:
         torch.cuda.empty_cache()
         logging.info("Generating a new pipe...")
         if use_attention_scaling is False:
+            self.pipe = StableDiffusionPipeline.from_pretrained(
+                pretrained_model_name_or_path=model_id, torch_dtype=self.torch_dtype
+            )
+            self.pipe.to(self.device)
+        elif use_attention_scaling:
+            logging.info(
+                "Using attention scaling, because high resolution was selected! Safety first!!"
+            )
+            self.pipe = StableDiffusionPipeline.from_pretrained(
+                pretrained_model_name_or_path=model_id
+            )
+            self.pipe.enable_sequential_cpu_offload()
+            self.pipe.enable_attention_slicing(1)
