@@ -105,3 +105,17 @@ class ImageGenerator:
             )
             self.pipe.enable_sequential_cpu_offload()
             self.pipe.enable_attention_slicing(1)
+            # torch.backends.cudnn.benchmark = True
+            # torch.backends.cudnn.enabled = True
+        self.pipe.safety_checker = lambda images, clip_input: (images, False)
+        logging.info("Return the pipe...")
+        return self.pipe
+
+    def generate_image_variations(
+        self,
+        width: int,
+        height: int,
+        input_image,
+        steps: int,
+        tqdm_capture,
+        guidance_scale=7.5,
