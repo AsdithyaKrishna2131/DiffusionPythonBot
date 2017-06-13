@@ -119,3 +119,16 @@ class ImageGenerator:
         steps: int,
         tqdm_capture,
         guidance_scale=7.5,
+        use_attention_scaling=False,
+    ):
+        if use_attention_scaling:
+            input_image = input_image.resize((512, 384))
+        logging.info("Initializing image variation generation pipeline...")
+        scaling_factor = self.get_scaling_factor(width, height, self.resolutions)
+        if int(steps) > int(scaling_factor):
+            steps = int(scaling_factor)
+        logging.info(f"Scaling factor for {width}x{height}: {scaling_factor}")
+        if scaling_factor < 50:
+            logging.info(
+                "Resolution "
+                + str(width)
