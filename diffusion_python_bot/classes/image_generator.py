@@ -132,3 +132,17 @@ class ImageGenerator:
             logging.info(
                 "Resolution "
                 + str(width)
+                + "x"
+                + str(height)
+                + " has a pixel count greater than threshold. Using attention scaling expects to take 30 seconds."
+            )
+            use_attention_scaling = True
+        pipe = self.get_variation_pipe(
+            "lambdalabs/sd-image-variations-diffusers",
+            use_attention_scaling=use_attention_scaling,
+        )
+        input_image = pad(
+            input_image, (input_image.size[0] // 2, input_image.size[1] // 2)
+        )
+        
+        # Generate image variations
