@@ -146,3 +146,17 @@ class ImageGenerator:
         )
         
         # Generate image variations
+        with tqdm(total=steps, ncols=100, file=tqdm_capture) as pbar:
+            generated_images = pipe(
+                width=width,
+                height=height,
+                image=input_image,
+                guidance_scale=guidance_scale,
+                num_inference_steps=int(float(steps)),
+            ).images
+        return generated_images
+
+    def generate_image(
+        self,
+        prompt,
+        model_id,
