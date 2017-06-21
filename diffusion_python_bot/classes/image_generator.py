@@ -160,3 +160,16 @@ class ImageGenerator:
         self,
         prompt,
         model_id,
+        resolution,
+        negative_prompt,
+        steps,
+        positive_prompt,
+        tqdm_capture,
+        user_config
+    ):
+        logging.info("Initializing image generation pipeline...")
+        is_attn_enabled = self.config.get_attention_scaling_status()
+        use_attention_scaling = False
+        max_retries = retry_delay = 5
+        if resolution is not None and is_attn_enabled:
+            scaling_factor = self.get_scaling_factor(
