@@ -173,3 +173,17 @@ class ImageGenerator:
         max_retries = retry_delay = 5
         if resolution is not None and is_attn_enabled:
             scaling_factor = self.get_scaling_factor(
+                resolution["width"], resolution["height"], self.resolutions
+            )
+            logging.info(
+                f"Scaling factor for {resolution['width']}x{resolution['height']}: {scaling_factor}"
+            )
+            if scaling_factor < 50:
+                logging.info(
+                    "Resolution "
+                    + str(resolution["width"])
+                    + "x"
+                    + str(resolution["height"])
+                    + " has a pixel count greater than threshold. Using attention scaling expects to take 30 seconds."
+                )
+                use_attention_scaling = True
