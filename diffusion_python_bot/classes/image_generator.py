@@ -187,3 +187,16 @@ class ImageGenerator:
                     + " has a pixel count greater than threshold. Using attention scaling expects to take 30 seconds."
                 )
                 use_attention_scaling = True
+                if steps > scaling_factor:
+                    steps = scaling_factor
+        # Current request's aspect ratio
+        aspect_ratio = self.aspect_ratio(resolution)
+        # Get the maximum resolution for the current aspect ratio
+        side_x = self.config.get_max_resolution_width(aspect_ratio)
+        side_y = self.config.get_max_resolution_height(aspect_ratio)
+        logging.info('Aspect ratio ' + str(aspect_ratio) + ' has a maximum resolution of ' + str(side_x) + 'x' + str(side_y) + '.')
+        if resolution["width"] <= side_x and resolution["height"] <= side_y:
+            side_x = resolution["width"]
+            side_y = resolution["height"]
+
+        logging.info("Retrieving pipe for model " + str(model_id))
