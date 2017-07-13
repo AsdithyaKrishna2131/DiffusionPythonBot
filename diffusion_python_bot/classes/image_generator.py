@@ -200,3 +200,17 @@ class ImageGenerator:
             side_y = resolution["height"]
 
         logging.info("Retrieving pipe for model " + str(model_id))
+        pipe = self.get_pipe(model_id, use_attention_scaling)
+        logging.info("Copied pipe to the local context")
+
+        logging.info("REDIRECTING THE PRECIOUS, STDOUT... SORRY IF THAT UPSETS YOU")
+        # Redirect sys.stdout to capture tqdm output
+        original_stderr = sys.stderr
+        sys.stderr = tqdm_capture
+
+        # Combine the main prompt and positive_prompt if provided
+        entire_prompt = prompt
+        if positive_prompt is not None:
+            entire_prompt = str(prompt) + " , " + str(positive_prompt)
+        for attempt in range(1, max_retries + 1):
+            try:
