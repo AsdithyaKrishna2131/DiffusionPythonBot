@@ -228,3 +228,16 @@ class ImageGenerator:
                 # torch.cuda.empty_cache()
                 logging.info("Image generation successful!")
                 scaling_target = self.nearest_scaled_resolution(resolution, user_config, self.config.get_max_resolution_by_aspect_ratio(aspect_ratio))
+                if scaling_target is not resolution:
+                    logging.info("Rescaling image to nearest resolution...")
+                    image = image.resize((scaling_target["width"], scaling_target["height"]))
+                return image
+            except Exception as e:
+                logging.error(
+                    f"Error generating image: {e}\n\nStack trace:\n{traceback.format_exc()}"
+                )
+                if attempt < max_retries:
+                    time.sleep(retry_delay)
+                else:
+                    raise RuntimeError(
+                        "Maximum retries reached, image generation failed"
