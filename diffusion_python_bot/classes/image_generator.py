@@ -214,3 +214,17 @@ class ImageGenerator:
             entire_prompt = str(prompt) + " , " + str(positive_prompt)
         for attempt in range(1, max_retries + 1):
             try:
+                logging.info(f"Attempt {attempt}: Generating image...")
+                with torch.no_grad():
+                    with tqdm(total=steps, ncols=100, file=tqdm_capture) as pbar:
+                        image = pipe(
+                            prompt=entire_prompt,
+                            height=side_y,
+                            width=side_x,
+                            num_inference_steps=int(float(steps)),
+                            negative_prompt=negative_prompt,
+                        ).images[0]
+
+                # torch.cuda.empty_cache()
+                logging.info("Image generation successful!")
+                scaling_target = self.nearest_scaled_resolution(resolution, user_config, self.config.get_max_resolution_by_aspect_ratio(aspect_ratio))
