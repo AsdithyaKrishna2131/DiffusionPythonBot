@@ -268,3 +268,17 @@ class ImageGenerator:
             if any(
                 r["width"] == width and r["height"] == height for r in self.resolutions
             ):
+                return True
+            else:
+                return False
+
+        indicator = "**"  # Indicator variable
+        indicator_length = len(indicator)
+
+        # Group resolutions by aspect ratio
+        grouped_resolutions = {}
+        for r in self.resolutions:
+            ar = self.aspect_ratio(r)
+            if ar not in grouped_resolutions:
+                grouped_resolutions[ar] = []
+            grouped_resolutions[ar].append(r)
