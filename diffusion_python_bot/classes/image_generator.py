@@ -255,3 +255,16 @@ class ImageGenerator:
         for subdir in os.listdir(base_dir):
             if subdir.startswith(model_prefix):
                 subdir_path = os.path.join(base_dir, subdir)
+                if os.path.isdir(subdir_path):
+                    # Remove "models-" prefix and replace "--" with "/"
+                    model_id = subdir[len(model_prefix) :].replace("--", "/")
+                    local_models.append(model_id)
+
+        return local_models
+
+    async def list_available_resolutions(self, user_id=None, resolution=None):
+        if resolution is not None:
+            width, height = map(int, resolution.split("x"))
+            if any(
+                r["width"] == width and r["height"] == height for r in self.resolutions
+            ):
