@@ -241,3 +241,17 @@ class ImageGenerator:
                 else:
                     raise RuntimeError(
                         "Maximum retries reached, image generation failed"
+                    )
+            finally:
+                # Don't forget to restore the original stdout after the image generation is done
+                # sys.stdout = original_stdout
+                sys.stderr = original_stderr
+
+    def get_available_models(self):
+        base_dir = self.config.get_local_model_path()
+
+        model_prefix = "models--"
+        local_models = []
+        for subdir in os.listdir(base_dir):
+            if subdir.startswith(model_prefix):
+                subdir_path = os.path.join(base_dir, subdir)
