@@ -282,3 +282,17 @@ class ImageGenerator:
             if ar not in grouped_resolutions:
                 grouped_resolutions[ar] = []
             grouped_resolutions[ar].append(r)
+
+        # Sort resolution groups by width and height
+        for ar, resolutions in grouped_resolutions.items():
+            grouped_resolutions[ar] = sorted(resolutions, key=lambda r: (r["width"], r["height"]))
+
+        # Calculate the maximum number of rows for the table
+        max_rows = max(len(resolutions) for resolutions in grouped_resolutions.values())
+
+        # Calculate the maximum field text width for each column, including the indicator
+        max_field_widths = {}
+        for ar, resolutions in grouped_resolutions.items():
+            max_field_widths[ar] = max(len(f"{r['width']}x{r['height']}") + 2 * indicator_length for r in resolutions)
+
+        # Generate resolution list in Markdown columns with padding
