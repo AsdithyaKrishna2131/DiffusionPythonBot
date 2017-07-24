@@ -296,3 +296,16 @@ class ImageGenerator:
             max_field_widths[ar] = max(len(f"{r['width']}x{r['height']}") + 2 * indicator_length for r in resolutions)
 
         # Generate resolution list in Markdown columns with padding
+        header_row = "| " + " | ".join(ar.ljust(max_field_widths[ar]) for ar in grouped_resolutions.keys()) + " |\n"
+        
+        # Update the separator_row generation
+        separator_row = "+-" + "-+-".join("-" * (max_field_widths[ar]) for ar in grouped_resolutions.keys()) + "-+\n"
+        
+        resolution_list = header_row + separator_row
+
+        for i in range(max_rows):
+            row_text = "| "
+            for ar, resolutions in grouped_resolutions.items():
+                if i < len(resolutions):
+                    r = resolutions[i]
+                    current_resolution_indicator = ""
