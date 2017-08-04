@@ -309,3 +309,17 @@ class ImageGenerator:
                 if i < len(resolutions):
                     r = resolutions[i]
                     current_resolution_indicator = ""
+                    if user_id is not None:
+                        user_resolution = self.config.get_user_setting(
+                            user_id, "resolution", {"width": 800, "height": 456}
+                        )
+                        if user_resolution is not None:
+                            if (
+                                user_resolution["width"] == r["width"]
+                                and user_resolution["height"] == r["height"]
+                            ):
+                                current_resolution_indicator = indicator
+                    res_str = (
+                        current_resolution_indicator
+                        + f"{r['width']}x{r['height']}"
+                        + current_resolution_indicator
