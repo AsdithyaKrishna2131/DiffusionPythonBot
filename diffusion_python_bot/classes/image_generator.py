@@ -336,3 +336,17 @@ class ImageGenerator:
         for res in scaled_resolutions:
             if res["width"] == width and res["height"] == height:
                 return int(res["scaling_factor"])
+        return None
+
+    def is_valid_resolution(self, width, height):
+        for res in self.resolutions:
+            if res["width"] == width and res["height"] == height:
+                return True
+        return False
+    def aspect_ratio(self, resolution_item: dict):
+        from math import gcd
+        width = resolution_item["width"]
+        height = resolution_item["height"]
+        # Calculate the greatest common divisor of width and height
+        divisor = gcd(width, height)
+
