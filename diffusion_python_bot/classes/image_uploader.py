@@ -14,3 +14,8 @@ class ImageUploader:
     async def set_bot(self, bot):
         self.bot = bot
 
+    async def authorize(self):
+        auth_url = self.client.authorize()
+        logging.info("Imgur auth URL: " + auth_url)
+        logging.info("Imgur config: " + str(self.client.config))
+        return auth_url
