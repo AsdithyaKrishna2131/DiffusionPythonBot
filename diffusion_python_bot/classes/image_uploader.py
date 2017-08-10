@@ -9,3 +9,8 @@ class ImageUploader:
     def __init__(self, config: AppConfig):
         self.config = config
         self.client = Imgur(config.get_imgur_config())
+        self.bot = None
+
+    async def set_bot(self, bot):
+        self.bot = bot
+
