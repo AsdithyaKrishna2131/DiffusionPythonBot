@@ -323,3 +323,16 @@ class ImageGenerator:
                         current_resolution_indicator
                         + f"{r['width']}x{r['height']}"
                         + current_resolution_indicator
+                    )
+                    row_text += res_str.ljust(max_field_widths[ar]) + " | "
+                else:
+                    row_text += " ".ljust(max_field_widths[ar]) + " | "
+            resolution_list += row_text + "\n"
+
+        # Wrap the output in triple backticks for fixed-width formatting in Discord
+        return f"```\n{resolution_list}\n```"
+
+    def get_scaling_factor(self, width, height, scaled_resolutions):
+        for res in scaled_resolutions:
+            if res["width"] == width and res["height"] == height:
+                return int(res["scaling_factor"])
