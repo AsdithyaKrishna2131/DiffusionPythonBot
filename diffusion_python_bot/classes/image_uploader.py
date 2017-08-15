@@ -34,3 +34,8 @@ class ImageUploader:
             import functools
             # This allows us to use an executor with keyword arguments.
             save_func = functools.partial(image.save, optimize=True)
+            # If we were to run this outside an executor, the resize will block the main thread.
+            await self.bot.loop.run_in_executor(
+                None,
+                save_func,
+                full_temp_path,
