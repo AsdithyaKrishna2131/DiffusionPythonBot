@@ -19,3 +19,8 @@ class ImageUploader:
         logging.info("Imgur auth URL: " + auth_url)
         logging.info("Imgur config: " + str(self.client.config))
         return auth_url
+
+    async def put_from_file(self, image_path, prompt: str = None, album = None):
+        if not os.path.exists(image_path):
+            raise Exception("Image file not found")
+        uploaded_image = self.client.image_upload(image_path, self.filename_from_prompt(prompt), prompt)
