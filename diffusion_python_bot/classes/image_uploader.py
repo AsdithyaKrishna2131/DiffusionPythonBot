@@ -39,3 +39,8 @@ class ImageUploader:
                 None,
                 save_func,
                 full_temp_path,
+                "PNG"
+            )
+            image_url = await self.upload_to_imgur(full_temp_path, prompt)
+            os.remove(full_temp_path)
+            return image_url
