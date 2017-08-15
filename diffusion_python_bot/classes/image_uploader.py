@@ -29,3 +29,8 @@ class ImageUploader:
 
     async def put_from_pil(self, image: Image, prompt: str):
         try:
+            temp_file_name = self.filename_from_prompt(prompt)
+            full_temp_path = self.image_dir() + '/' + temp_file_name
+            import functools
+            # This allows us to use an executor with keyword arguments.
+            save_func = functools.partial(image.save, optimize=True)
