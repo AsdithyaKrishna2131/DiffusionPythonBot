@@ -24,3 +24,8 @@ class ImageUploader:
         if not os.path.exists(image_path):
             raise Exception("Image file not found")
         uploaded_image = self.client.image_upload(image_path, self.filename_from_prompt(prompt), prompt)
+        logging.info("Uploaded image: " + str(uploaded_image))
+        return uploaded_image["response"]["data"]["link"]
+
+    async def put_from_pil(self, image: Image, prompt: str):
+        try:
