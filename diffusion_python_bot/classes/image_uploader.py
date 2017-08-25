@@ -44,3 +44,8 @@ class ImageUploader:
             image_url = await self.upload_to_imgur(full_temp_path, prompt)
             os.remove(full_temp_path)
             return image_url
+        except Exception as e:
+            logging.exception(e)
+            raise e
+
+    async def put_from_buffer(self, buffer, prompt: str):
