@@ -49,3 +49,8 @@ class ImageUploader:
             raise e
 
     async def put_from_buffer(self, buffer, prompt: str):
+        temp_file_name = self.filename_from_prompt(prompt)
+        full_temp_path = self.image_dir() + '/' + temp_file_name
+        buffer.save(full_temp_path)
+        image_url = await self.upload_to_imgur(full_temp_path, prompt)
+        os.remove(full_temp_path)
