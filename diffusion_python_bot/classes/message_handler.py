@@ -13,3 +13,13 @@ from diffusion_python_bot.classes.discord_log_handler import DiscordLogHandler
 from diffusion_python_bot.classes.discord_progress_bar import DiscordProgressBar
 from diffusion_python_bot.classes.image_uploader import ImageUploader
 
+class MessageHandler:
+    def __init__(
+        self,
+        image_generator: ImageGenerator,
+        config: AppConfig,
+        shared_queue: Queue,
+        shared_queue_lock: Lock,
+        image_uploader: ImageUploader
+    ):
+        self.image_generator = image_generator
