@@ -32,3 +32,12 @@ class MessageHandler:
     def set_bot(self, bot):
         self.bot = bot
 
+    async def handle_message(self, message):
+        if message.author.bot:
+            return
+        in_my_thread = False
+        is_in_thread = False
+        if isinstance(message.channel, discord.Thread):
+            is_in_thread = True
+        if message.attachments:
+            await self._handle_image_attachment(message)
