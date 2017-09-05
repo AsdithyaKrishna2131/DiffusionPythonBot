@@ -23,3 +23,12 @@ class MessageHandler:
         image_uploader: ImageUploader
     ):
         self.image_generator = image_generator
+        self.config = config
+        self.bot = None  # This will be set later
+        self.queue = shared_queue
+        self.lock = shared_queue_lock
+        self.uploader = image_uploader
+
+    def set_bot(self, bot):
+        self.bot = bot
+
