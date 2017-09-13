@@ -51,3 +51,12 @@ class MessageHandler:
         # Run only if it's in the bot's thread, and has no image attachments, and, has no "!" commands.
         if in_my_thread and not message.attachments and message.content[0] != "!" and message.content[0] != "+":
             # TODO: Implement the ability to respond to prompts without !generate
+            # This will hopefully, not respond to an image attachment.
+            print("Attempting to run generate command?")
+            await self.invoke_command(message, "generate")
+        await self.bot.process_commands(message)
+    
+    async def invoke_command(self, message, command_name):
+        # Get the command object
+        ctx = await self.bot.get_context(message)
+        command = self.bot.get_command(command_name)
