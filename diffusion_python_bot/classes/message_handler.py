@@ -41,3 +41,13 @@ class MessageHandler:
             is_in_thread = True
         if message.attachments:
             await self._handle_image_attachment(message)
+
+        # Whether we're in a thread the bot started.
+        if is_in_thread and message.channel.owner_id == self.bot.user.id or message.author.bot:
+            in_my_thread = True
+        if is_in_thread and len(message.content) > 0 and message.content[0] == "*":
+            # Respond to * as all bots.
+            in_my_thread = True
+        # Run only if it's in the bot's thread, and has no image attachments, and, has no "!" commands.
+        if in_my_thread and not message.attachments and message.content[0] != "!" and message.content[0] != "+":
+            # TODO: Implement the ability to respond to prompts without !generate
