@@ -60,3 +60,12 @@ class MessageHandler:
         # Get the command object
         ctx = await self.bot.get_context(message)
         command = self.bot.get_command(command_name)
+        if command is not None:
+            await command(ctx, prompt=' '.join(ctx.message.content.split()))
+    
+    async def _handle_image_attachment(self, message):
+        # Yo, check if the bot is mentioned, bro!
+        bot_mention = discord.utils.find(lambda mention: mention.id == self.bot.user.id, message.mentions)
+
+        # Check if both conditions are met
+        if not bot_mention or message.author.bot:
