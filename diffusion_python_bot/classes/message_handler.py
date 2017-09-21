@@ -69,3 +69,13 @@ class MessageHandler:
 
         # Check if both conditions are met
         if not bot_mention or message.author.bot:
+            # If not mentioned, just chill and return, bro.
+            return
+        # If the bot is mentioned, let's do some work, bro!
+        user_id = message.author.id
+        logging.info("User id: " + str(user_id))
+        discord_first_message = await message.channel.send(
+            "Yo, "
+            + message.author.name
+            + "! I gotchu, bro! I'm on it, but it's gonna take a sec."
+        )
