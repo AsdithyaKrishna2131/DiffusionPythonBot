@@ -97,3 +97,13 @@ class MessageHandler:
                 original_stdout = sys.stdout
                 original_stderr = sys.stderr
                 # Create an instance of the custom DiscordProgressBar
+                discord_progress_bar = DiscordProgressBar(self, ctx, 100, original_stdout)
+                tqdm_capture = TqdmCapture(discord_progress_bar, self.bot.loop, original_stdout, original_stderr)
+                sys.stderr = tqdm_capture
+                image = self.image_generator.generate_image_variations(resolution["width"], resolution["height"], input_image, num_inference_steps, tqdm_capture)
+                try:
+                    async with self.lock:
+                        generated_images = await self.bot.loop.run_in_executor(
+                            None,
+                            self.image_generator.generate_image_variations,
+                            width,
