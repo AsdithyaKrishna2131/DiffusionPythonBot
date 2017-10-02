@@ -88,3 +88,12 @@ class MessageHandler:
         width = resolution["width"]
         height = resolution["height"]
         for attachment in message.attachments:
+            if attachment.content_type.startswith("image/"):
+                image_data = await attachment.read()
+                input_image = Image.open(BytesIO(image_data))
+                prompt = message.content # Not used yet, but, good to have.
+                ctx = message.channel # Channel/Thread context.
+                # Redirect sys.stdout to capture tqdm output
+                original_stdout = sys.stdout
+                original_stderr = sys.stderr
+                # Create an instance of the custom DiscordProgressBar
