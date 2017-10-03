@@ -125,3 +125,12 @@ class MessageHandler:
                 finally:
                     sys.stderr = original_stderr
 
+    async def send_large_message(self, ctx, text, max_chars=2000):
+        if len(text) <= max_chars:
+            await ctx.send(text)
+            return
+
+        lines = text.split("\n")
+        buffer = ""
+        first_message = None
+        for line in lines:
