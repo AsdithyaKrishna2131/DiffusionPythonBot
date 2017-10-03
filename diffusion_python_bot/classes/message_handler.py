@@ -116,3 +116,12 @@ class MessageHandler:
                         buffer = BytesIO()
                         image.resize({1920, 1080}).save(buffer, "PNG")
                         buffer.seek(0)
+                        await message.channel.send(
+                            file=discord.File(buffer, f"variant_{i}.png")
+                        )
+                except Exception as e:
+                    error_message = f"Error generating image variant: {e}\n\nStack trace:\n{traceback.format_exc()}"
+                    await message.channel.send(error_message)
+                finally:
+                    sys.stderr = original_stderr
+
