@@ -107,3 +107,12 @@ class MessageHandler:
                             None,
                             self.image_generator.generate_image_variations,
                             width,
+                            height,
+                            input_image,
+                            num_inference_steps,
+                            tqdm_capture
+                        )
+                    for i, image in enumerate(generated_images):
+                        buffer = BytesIO()
+                        image.resize({1920, 1080}).save(buffer, "PNG")
+                        buffer.seek(0)
