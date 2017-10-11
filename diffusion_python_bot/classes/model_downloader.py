@@ -10,3 +10,6 @@ class ModelDownloader:
 
     def download_model(self, subdir):
         with self.download_lock:
+            subdir_path = os.path.join(self.base_dir, subdir)
+            if os.path.isdir(subdir_path):
+                config_path = os.path.join(subdir_path, "config.json")
