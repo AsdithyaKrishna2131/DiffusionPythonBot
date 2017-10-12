@@ -16,3 +16,6 @@ class ModelDownloader:
                 model_path = os.path.join(subdir_path, "pytorch_model.bin")
 
                 if os.path.exists(config_path) and os.path.exists(model_path):
+                    # Replace underscores with slashes to match the original model_id
+                    model_id = subdir.replace("_", "/")
+                    self.local_models.append(model_id)
