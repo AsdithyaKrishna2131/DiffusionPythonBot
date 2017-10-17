@@ -19,3 +19,6 @@ class ModelDownloader:
                     # Replace underscores with slashes to match the original model_id
                     model_id = subdir.replace("_", "/")
                     self.local_models.append(model_id)
+
+    def get_local_models(self):
+        threads = []
