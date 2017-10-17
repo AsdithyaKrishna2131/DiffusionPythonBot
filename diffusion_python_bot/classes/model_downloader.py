@@ -22,3 +22,6 @@ class ModelDownloader:
 
     def get_local_models(self):
         threads = []
+
+        for subdir in os.listdir(self.base_dir):
+            t = threading.Thread(target=self.download_model, args=(subdir,))
