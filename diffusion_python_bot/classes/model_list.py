@@ -11,3 +11,8 @@ class ModelList:
         parent = os.path.dirname(Path(__file__).resolve().parent)
         model_list_path = os.path.join(parent, "config")
         self.model_list_path = os.path.join(model_list_path, "config.json")
+        self.example_model_list_path = os.path.join(model_list_path, "example.json")
+
+        if not os.path.exists(self.config_path):
+            with open(self.example_config_path, "r") as example_file:
+                example_config = json.load(example_file)
