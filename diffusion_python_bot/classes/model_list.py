@@ -16,3 +16,9 @@ class ModelList:
         if not os.path.exists(self.config_path):
             with open(self.example_config_path, "r") as example_file:
                 example_config = json.load(example_file)
+
+            with open(self.config_path, "w") as config_file:
+                json.dump(example_config, config_file, indent=4)
+
+        with open(self.config_path, "r") as config_file:
+            self.config = json.load(config_file)
