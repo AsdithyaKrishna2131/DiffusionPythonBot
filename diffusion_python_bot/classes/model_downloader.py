@@ -25,3 +25,6 @@ class ModelDownloader:
 
         for subdir in os.listdir(self.base_dir):
             t = threading.Thread(target=self.download_model, args=(subdir,))
+            t.start()
+            t.join()  # Wait for the current thread to finish before starting the next one
+            threads.append(t)
