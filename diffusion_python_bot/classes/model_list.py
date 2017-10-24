@@ -33,3 +33,9 @@ class ModelList:
 
     def get_max_resolution_width(self, aspect_ratio: str):
         return self.config.get("maxres", {}).get(aspect_ratio, {}).get("width", 800)
+
+    def get_max_resolution_height(self, aspect_ratio: str):
+        return self.config.get("maxres", {}).get(aspect_ratio, {}).get("height", 456)
+
+    def get_attention_scaling_status(self):
+        return self.config.get("use_attn_scaling", False)
