@@ -39,3 +39,9 @@ class ModelList:
 
     def get_attention_scaling_status(self):
         return self.config.get("use_attn_scaling", False)
+
+    def get_discord_api_key(self):
+        return self.config["discord_api"]["api_key"]
+
+    def get_huggingface_api_key(self):
+        return self.config["huggingface_api"].get("api_key", None)
