@@ -50,3 +50,9 @@ class ModelList:
         return self.config["huggingface"].get("local_model_path", "/root/.cache/huggingface")
 
     def get_imgur_config(self):
+        return self.config.get("imgur", {"client_id": None, "client_secret": None})
+
+    def get_user_config(self, user_id):
+        return self.config["users"].get(str(user_id), {})
+ 
+    def get_image_dir(self):
