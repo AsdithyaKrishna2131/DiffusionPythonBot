@@ -4,3 +4,4 @@ class FilteringStderrWrapper:
         self.original_stdout = original_stdout
 
     def write(self, s):
+        return
