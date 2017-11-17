@@ -5,3 +5,4 @@ class FilteringStderrWrapper:
 
     def write(self, s):
         return
+        # if not s.startswith("PyTorch"):
