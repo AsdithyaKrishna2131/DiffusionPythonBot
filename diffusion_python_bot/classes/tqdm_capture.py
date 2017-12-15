@@ -7,3 +7,5 @@ class TqdmCapture:
         self.loop = loop
         self.original_stdout = original_stdout
         self.original_stderr = original_stderr
+
+    def write(self, s: str):
