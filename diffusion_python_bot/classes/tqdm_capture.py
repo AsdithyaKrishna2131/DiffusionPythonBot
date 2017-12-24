@@ -9,3 +9,4 @@ class TqdmCapture:
         self.original_stderr = original_stderr
 
     def write(self, s: str):
+        test_string = s.strip()
