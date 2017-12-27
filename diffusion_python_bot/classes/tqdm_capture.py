@@ -10,3 +10,5 @@ class TqdmCapture:
 
     def write(self, s: str):
         test_string = s.strip()
+        if test_string != "":
+            match = re.search(r'\b(\d+)%\|', s)
