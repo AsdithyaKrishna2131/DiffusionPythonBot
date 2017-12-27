@@ -12,3 +12,5 @@ class TqdmCapture:
         test_string = s.strip()
         if test_string != "":
             match = re.search(r'\b(\d+)%\|', s)
+            if match:
+                progress = int(match.group(1))
