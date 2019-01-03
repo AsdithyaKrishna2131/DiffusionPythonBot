@@ -3,3 +3,7 @@
     branches:
       only: main
 jobs:
+  CloneRepo:
+    resources:
+      instance-type: C5
+    outputs:
