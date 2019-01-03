@@ -7,3 +7,6 @@ jobs:
     resources:
       instance-type: C5
     outputs:
+      repo:
+        type: volume
+    uses: git-checkout@v1
