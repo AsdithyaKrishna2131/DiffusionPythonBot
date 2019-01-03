@@ -10,3 +10,7 @@ jobs:
       repo:
         type: volume
     uses: git-checkout@v1
+    with:
+      url: "https://github.com/Merkle/diffusion-python-bot"
+  HelloWorld:
+    resources:
