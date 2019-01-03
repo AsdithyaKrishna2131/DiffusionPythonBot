@@ -1,2 +1,5 @@
 'on':
   github:
+    branches:
+      only: main
+jobs:
