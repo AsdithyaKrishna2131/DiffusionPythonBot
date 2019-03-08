@@ -350,3 +350,48 @@ class ImageGenerator:
         # Calculate the greatest common divisor of width and height
         divisor = gcd(width, height)
 
+        # Calculate the aspect ratio
+        ratio_width = width // divisor
+        ratio_height = height // divisor
+
+        # Return the aspect ratio as a string in the format "width:height"
+        return f"{ratio_width}:{ratio_height}"
+
+    def nearest_scaled_resolution(self, resolution: dict, user_config: dict, max_resolution_config: dict):
+        # We will scale by default, to 4x the requested resolution. Big energy!
+        factor = user_config.get("resize_factor", 1)
+        logging.info("Resize configuration is set by user factoring at " + str(factor))
+        if factor == 1 or factor == 0:
+            # Do not bother rescaling if it's set to 1 or 0
+            return resolution
+        width = resolution["width"]
+        height = resolution["height"]
+        aspect_ratio = self.aspect_ratio(resolution)
+
+        new_width = int(width * factor)
+        new_height = int(height * factor)
+        new_aspect_ratio = self.aspect_ratio({"width": new_width, "height": new_height})
+        max_resolution = self.get_highest_resolution(aspect_ratio, max_resolution_config)
+        if aspect_ratio != new_aspect_ratio:
+            logging.info("Aspect ratio changed after scaling, using max resolution " + str(max_resolution) + " instead.")
+            return max_resolution
+        if not self.is_valid_resolution(new_width, new_height):
+            logging.info("Nearest resolution for AR " + str(aspect_ratio) + " not found, using max resolution: " + str(max_resolution) + " instead.")
+            return max_resolution
+
+    def get_highest_resolution(self, aspect_ratio: str, max_resolution_config: dict):
+        # Calculate the aspect ratio of the input image
+        # Filter the resolutions list to only include resolutions with the same aspect ratio as the input image
+        filtered_resolutions = [r for r in self.resolutions if self.aspect_ratio(r) == aspect_ratio]
+
+        # Sort the filtered resolutions list by scaling factor in descending order
+        sorted_resolutions = sorted(filtered_resolutions, key=lambda r: r["scaling_factor"], reverse=False)
+
+        # Check for a maximum resolution cap in the configuration
+        max_res_cap = max_resolution_config.get(aspect_ratio)
+
+        # If there's a cap, filter the sorted resolutions list to only include resolutions below the cap
+        if max_res_cap:
+            sorted_resolutions = [r for r in sorted_resolutions if r["width"] <= max_res_cap["width"] and r["height"] <= max_res_cap["height"]]
+
+        # Return the first (highest) resolution from the sorted list, or None if the list is empty
