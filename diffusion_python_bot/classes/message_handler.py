@@ -134,3 +134,25 @@ class MessageHandler:
         buffer = ""
         first_message = None
         for line in lines:
+            if len(buffer) + len(line) + 1 > max_chars:
+                if not first_message:
+                    first_message = await ctx.send(buffer)
+                    thread = await first_message.create_thread(name="Model List")
+                else:
+                    await thread.send_message(buffer)
+                buffer = ""
+            buffer += line + "\n"
+
+        if buffer:
+            await thread.send_message(buffer)
+
+    def setup_logger(self, ctx):
+        logger = logging.getLogger('discord_image_pipeline')
+        logger.setLevel(logging.DEBUG)
+
+        discord_handler = DiscordLogHandler(ctx)
+        discord_handler.setLevel(logging.DEBUG)
+        formatter = logging.Formatter('%(asctime)s [%(levelname)s] %(message)s')
+        discord_handler.setFormatter(formatter)
+        logger.addHandler(discord_handler)
+
