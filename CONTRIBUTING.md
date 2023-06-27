@@ -9,3 +9,5 @@ Thanks for your interest in improving this project.
 3. Keep changes small and reviewable; include a clear description of what and why.
 
 ## Reporting problems
+
+Open an issue with the exact commands you ran, the version, and the output.
