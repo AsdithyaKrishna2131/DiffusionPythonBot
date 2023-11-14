@@ -1,0 +1,49 @@
+# .gitignore
+diffusion_python_bot/config/config.json
+
+# Python artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pyi
+*.pyz
+*.pyc
+
+# Virtual environments
+venv/
+env/
+.virtualenv/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# IDE / Editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*.sublime-project
+*.sublime-workspace
+This .gitignore file covers common Python artifacts, virtual environments, Jupyter notebooks, logs, databases, OS generated files, and some IDE/editor-specific files. Simply create a file named `.
+
+
+
