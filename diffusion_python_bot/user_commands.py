@@ -37,3 +37,9 @@ class UserCommands(commands.Cog):
             f"🟠 **Negative Prompt:**:\n➡️    `{negative_prompt}`\n❓ Images featuring these keywords are less likely to be generated. Set via `!negative`.\n"
             f"🟠 **Positive Prompt:**:\n➡️    `{positive_prompt}`\n❓ Added to the end of every prompt, which has a limit of 77 tokens. This can become truncated. Set via `!positive`.\n"
             f"🟠 **Resolution:** `{resolution['width']}x{resolution['height']}`\n❓ Lower resolutions render more quickly, and has a relationship with `steps` that can really influence the output. See **!help resolution** for more information."
+        )
+
+        await ctx.send(message)
+
+
+def setup(bot):
