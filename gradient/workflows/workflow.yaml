@@ -17,3 +17,9 @@ jobs:
       instance-type: C5
     needs:
       - CloneRepo
+    inputs:
+      repo: CloneRepo.outputs.repo
+    uses: script@v1
+    with:
+      script: python /inputs/repo/diffusion_python_bot/main.py
+      image: tensorflow/tensorflow:1.14.0-py3
