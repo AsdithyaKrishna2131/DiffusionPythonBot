@@ -4,4 +4,4 @@ class DiscordWrapper(commands.Bot):
         super().__init__(*args, **kwargs)
         self.forwarded_message_ids = set()
 
-# draft note 1314
+# draft note 1317
