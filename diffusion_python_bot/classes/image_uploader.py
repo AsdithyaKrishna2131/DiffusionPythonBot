@@ -54,3 +54,16 @@ class ImageUploader:
         buffer.save(full_temp_path)
         image_url = await self.upload_to_imgur(full_temp_path, prompt)
         os.remove(full_temp_path)
+        return image_url
+
+    async def upload_to_imgur(self, image_path, prompt: str = None, album = None):
+        link = await self.put_from_file(image_path, prompt, album)
+        return link
+
+    def filename_from_prompt(self, prompt):
+        return prompt.replace(" ", "_").replace("/", "-").replace("'", "")[:32].lower() + ".png"
+
+    def image_dir(self):
+        return self.config.get_image_dir()
+
+# draft note 1316
