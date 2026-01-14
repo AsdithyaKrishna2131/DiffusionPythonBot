@@ -156,3 +156,5 @@ class MessageHandler:
         discord_handler.setFormatter(formatter)
         logger.addHandler(discord_handler)
 
+        return logger
+# draft note 1318
