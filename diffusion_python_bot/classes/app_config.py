@@ -63,3 +63,18 @@ class AppConfig:
     def set_user_config(self, user_id, user_config):
         self.config["users"][str(user_id)] = user_config
         with open(self.config_path, "w") as config_file:
+            json.dump(self.config, config_file, indent=4)
+
+    def set_user_setting(self, user_id, setting_key, value):
+        user_id = str(user_id)
+        if user_id not in self.config["users"]:
+            self.config["users"][user_id] = {}
+        self.config["users"][user_id][setting_key] = value
+        with open(self.config_path, "w") as config_file:
+            json.dump(self.config, config_file, indent=4)
+
+    def get_user_setting(self, user_id, setting_key, default_value=None):
+        user_id = str(user_id)
+        return self.config["users"].get(user_id, {}).get(setting_key, default_value)
+
+# draft note 1319
