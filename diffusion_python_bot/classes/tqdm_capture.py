@@ -14,3 +14,9 @@ class TqdmCapture:
             match = re.search(r'\b(\d+)%\|', s)
             if match:
                 progress = int(match.group(1))
+                asyncio.run_coroutine_threadsafe(self.progress_bar.update_progress_bar(progress), self.loop)
+
+    def flush(self):
+        pass
+
+# draft note 1320
