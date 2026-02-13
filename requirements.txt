@@ -8,3 +8,6 @@ xformers
 torchvision
 torchaudio
 huggingface_hub
+tensorrt
+imgur-python
+<!-- draft note 1324 -->
