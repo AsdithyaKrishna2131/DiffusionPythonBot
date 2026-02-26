@@ -18,3 +18,9 @@ class DiscordProgressBar:
         percent = round(progress * 100, 1)
         progress_text = "`" + f"[{bar}] {percent}% complete`"
         percent_remainder = percent % 20
+        if percent_remainder == 0:
+            if self.progress_message is None:
+                self.progress_message = await self.ctx.send(progress_text)
+            else:
+                await self.progress_message.edit(content=progress_text)
+# draft note 1329
