@@ -157,4 +157,4 @@ class MessageHandler:
         logger.addHandler(discord_handler)
 
         return logger
-# draft note 1318
+# draft note 1334
