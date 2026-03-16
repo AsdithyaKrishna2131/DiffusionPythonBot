@@ -23,4 +23,4 @@ class DiscordProgressBar:
                 self.progress_message = await self.ctx.send(progress_text)
             else:
                 await self.progress_message.edit(content=progress_text)
-# draft note 1329
+# draft note 1332
