@@ -45,4 +45,4 @@ class UserCommands(commands.Cog):
 def setup(bot):
     bot.add_cog(UserCommands(bot))
 
-# draft note 1315
+# draft note 1339
