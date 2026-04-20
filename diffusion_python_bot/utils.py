@@ -9,3 +9,6 @@ def _get_project_meta():
         "pyproject.toml",
     )
     with open(pyproject_path) as pyproject:
+        file_contents = pyproject.read()
+
+    return tomlkit.parse(file_contents)["tool"]["poetry"]
