@@ -75,4 +75,4 @@ class ModelList:
         user_id = str(user_id)
         return self.config["users"].get(user_id, {}).get(setting_key, default_value)
 
-# draft note 1345
+# draft note 1347
