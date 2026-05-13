@@ -28,3 +28,11 @@ class ModelDownloader:
             t.start()
             t.join()  # Wait for the current thread to finish before starting the next one
             threads.append(t)
+
+        # Wait for all threads to complete
+        for t in threads:
+            t.join()
+
+        return self.local_models
+
+# draft note 1348
