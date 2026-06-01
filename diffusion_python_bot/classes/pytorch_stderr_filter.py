@@ -7,3 +7,7 @@ class FilteringStderrWrapper:
         return
         # if not s.startswith("PyTorch"):
         #     self.original_stderr.write(s)
+
+    def flush(self):
+        self.original_stderr.flush()
+# draft note 1358
