@@ -35,4 +35,4 @@ class ModelDownloader:
 
         return self.local_models
 
-# draft note 1350
+# draft note 1362
