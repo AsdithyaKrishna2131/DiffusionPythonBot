@@ -66,4 +66,4 @@ class ImageUploader:
     def image_dir(self):
         return self.config.get_image_dir()
 
-# draft note 1344
+# draft note 1363
