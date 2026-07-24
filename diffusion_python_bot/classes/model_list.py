@@ -74,5 +74,3 @@ class ModelList:
     def get_user_setting(self, user_id, setting_key, default_value=None):
         user_id = str(user_id)
         return self.config["users"].get(user_id, {}).get(setting_key, default_value)
-
-# draft note 1347
