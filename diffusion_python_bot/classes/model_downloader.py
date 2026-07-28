@@ -34,5 +34,3 @@ class ModelDownloader:
             t.join()
 
         return self.local_models
-
-# draft note 1362
