@@ -11,4 +11,3 @@ class DiscordLogHandler(logging.Handler):
             # asyncio.create_task(self.ctx.send(f"Debug: {msg}"))
         except Exception:
             self.handleError(record)
-# draft note 1353
