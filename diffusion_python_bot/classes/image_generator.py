@@ -395,3 +395,4 @@ class ImageGenerator:
             sorted_resolutions = [r for r in sorted_resolutions if r["width"] <= max_res_cap["width"] and r["height"] <= max_res_cap["height"]]
 
         # Return the first (highest) resolution from the sorted list, or None if the list is empty
+        return sorted_resolutions[0] if sorted_resolutions else None
