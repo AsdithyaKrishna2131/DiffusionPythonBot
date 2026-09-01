@@ -41,5 +41,3 @@ Contributions to the project are welcome! Please submit pull requests or issues 
 ## License
 
 This project is released as GPL3. I only ask that contributions be made available to others to learn from.
-
-<!-- draft note 1390 -->
